@@ -1,0 +1,22 @@
+{
+    "name": "maknz/slack-laravel",
+    "description": "Laravel 4 and 5 integration for the maknz/slack package, including facades and service providers.",
+    "keywords": ["slack", "laravel"],
+    "license": "BSD-2-Clause",
+    "authors": [
+        {
+            "name": "maknz",
+            "email": "github@mak.geek.nz"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.0",
+        "maknz/slack": "@dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "Maknz\\Slack\\Laravel\\": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}
