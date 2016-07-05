@@ -57,7 +57,7 @@ Then add the facade to your `aliases` array:
 ],
 ```
 
-Finally, publish the config file with `php artisan config:publish maknz/slack`. You'll find the config file at `app/config/packages/maknz/slack-laravel/config.php`.
+Finally, publish the config file with `php artisan config:publish maknz/slack --provider="Maknz\Slack\Laravel\ServiceProvider"`. You'll find the config file at `app/config/packages/maknz/slack-laravel/config.php`.
 
 ## Configuration
 
