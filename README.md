@@ -1,6 +1,6 @@
 # Slack for Laravel
 
-This package allows you to use [Slack for PHP](https://github.com/maknz/slack) easily and elegantly in your Laravel 4 or 5 app. Read the instructions below to get setup, and then head on over to [Slack for PHP](https://github.com/maknz/slack) for usage details.
+This package allows you to use [Slack for PHP](https://github.com/maknz/slack) easily and elegantly in your Laravel 4 or 5 app. Read the instructions below to get setup, and then head on over to [Slack for PHP](https://github.com/maknz/slack) for usage details. **Note: this package is no longer being actively maintained.**
 
 ## Requirements
 
