@@ -1,21 +1,25 @@
 {
-    "name": "maknz/slack-laravel",
-    "description": "Laravel 4 and 5 integration for the maknz/slack package, including facades and service providers.",
+    "name": "razorpay/slack-laravel",
+    "description": "Laravel 4 and 5 integration for the razorpay/slack package, including facades and service providers.",
     "keywords": ["slack", "laravel"],
     "license": "BSD-2-Clause",
     "authors": [
         {
             "name": "maknz",
             "email": "github@mak.geek.nz"
+        },
+        {
+            "name": "Team Razorpay",
+            "email": "support@razorpay.com"
         }
     ],
     "require": {
         "php": ">=5.4.0",
-        "maknz/slack": "~1.0"
+        "razorpay/slack": "~1.0"
     },
     "autoload": {
         "psr-4": {
-            "Maknz\\Slack\\Laravel\\": "src/"
+            "Razorpay\\Slack\\Laravel\\": "src/"
         }
     },
     "minimum-stability": "stable"

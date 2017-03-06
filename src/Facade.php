@@ -1,6 +1,6 @@
 <?php
 
-namespace Maknz\Slack\Laravel;
+namespace Razorpay\Slack\Laravel;
 
 class Facade extends \Illuminate\Support\Facades\Facade
 {
@@ -11,6 +11,6 @@ class Facade extends \Illuminate\Support\Facades\Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'maknz.slack';
+        return 'razorpay.slack';
     }
 }
