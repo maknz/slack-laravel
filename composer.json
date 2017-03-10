@@ -15,8 +15,14 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "razorpay/slack": "~1.0"
+        "maknz/slack": "~1.0"
     },
+    "repositories": [
+      {
+        "type": "vcs",
+        "url": "git@github.com:razorpay/slack.git"
+      }
+    ],
     "autoload": {
         "psr-4": {
             "Razorpay\\Slack\\Laravel\\": "src/"
