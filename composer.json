@@ -15,7 +15,7 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "maknz/slack": "~1.0"
+        "razorpay/slack": "1.8.0"
     },
     "repositories": [
       {
