@@ -23,11 +23,9 @@ class ServiceProviderLaravel5 extends \Illuminate\Support\ServiceProvider
         return $this->app['encrypter'];
     }
 
-    protected function getDefaultQueue()
+    protected function getQueue($queue)
     {
-        $queue = $this->app['queue.connection'];
-
-        return $queue;
+        return $this->app['queue']->connection($queue);
     }
 
     /**
@@ -53,7 +51,7 @@ class ServiceProviderLaravel5 extends \Illuminate\Support\ServiceProvider
                     'markdown_in_attachments' => $app['config']->get('slack.markdown_in_attachments'),
                     'is_slack_enabled'        => $app['config']->get('slack.is_slack_enabled'),
                 ],
-                $this->getDefaultQueue(),
+                $this->getQueue($app['config']->get('slack.queue')),
                 new Guzzle
             );
 
