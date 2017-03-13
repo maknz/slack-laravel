@@ -119,4 +119,8 @@ return [
     // Allow Markdown in all fields
     // 'markdown_in_attachments' => ['pretext', 'text', 'title', 'fields', 'fallback']
     'is_slack_enabled' => true,
+
+    // Use non-default connection for slack,
+    // if set to null, it will use the default connection
+    'queue' => null,
 ];
