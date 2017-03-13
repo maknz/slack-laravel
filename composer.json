@@ -18,10 +18,6 @@
         "razorpay/slack": "1.8.0"
     },
     "repositories": [
-      {
-        "type": "vcs",
-        "url": "git@github.com:razorpay/slack.git"
-      }
     ],
     "autoload": {
         "psr-4": {
