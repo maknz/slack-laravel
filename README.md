@@ -35,7 +35,19 @@ Then add the facade to your `aliases` array:
 ],
 ```
 
-Finally, publish the config file with `php artisan vendor:publish`. You'll find it at `config/slack.php`.
+Finally, publish the config file
+
+## Laravel 4
+
+Run `php artisan vendor:publish`.
+
+You'll find it at `config/slack.php`.
+
+## Laravel 5
+
+Run `php artisan vendor:publish --provider maknz/slack` 
+
+You'll find it at `config/slack.php`.
 
 ## Laravel 4
 
