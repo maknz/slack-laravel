@@ -59,6 +59,22 @@ Then add the facade to your `aliases` array:
 
 Finally, publish the config file with `php artisan config:publish maknz/slack`. You'll find the config file at `app/config/packages/maknz/slack-laravel/config.php`.
 
+## Lumen
+
+Add the `Maknz\Slack\Laravel\ServiceProvider` provider to the Service Providers section of `bootstrap/app.php`:
+
+```php
+$app->register(Maknz\Slack\Laravel\ServiceProvider::class);
+```
+
+Add the following line to `boostrap/app.php` to enable the facade. Be sure to uncomment the `$this->withFacades()` line if you have not already done so. 
+
+```php
+class_alias('Maknz\Slack\Laravel\Facade', 'Slack');
+```
+
+Finally, copy the config file from `vendor/maknz/slack-laravel/src/config/config.php` to `config/slack.php`.
+
 ## Configuration
 
 The config file comes with defaults and placeholders. Configure at least one team and any defaults you'd like to change.
