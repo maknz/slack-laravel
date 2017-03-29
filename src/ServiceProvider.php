@@ -62,6 +62,10 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
     {
         $app = $this->app;
 
+        if (str_contains($this->app->version(), 'Lumen')) {
+            return new ServiceProviderLumen5($app);
+        };
+
         $version = intval($app::VERSION);
 
         switch ($version) {
