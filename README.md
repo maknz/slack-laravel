@@ -35,7 +35,7 @@ Then add the facade to your `aliases` array:
 ],
 ```
 
-Finally, publish the config file with `php artisan vendor:publish`. You'll find it at `config/slack.php`.
+Finally, publish the config file with `php artisan vendor:publish --tag=slacklaravel`. You'll find it at `config/slack.php`.
 
 ## Laravel 4
 
@@ -62,6 +62,20 @@ Finally, publish the config file with `php artisan config:publish maknz/slack`. 
 ## Configuration
 
 The config file comes with defaults and placeholders. Configure at least one team and any defaults you'd like to change.
+
+Default configurations are published into `config/slack.php` and the values can be set in the `.env` file like so:
+
+```
+DEFAULT_SLACK_WEBHOOK_ENDPOINT=https://hooks.slack.com/services/XXXXXXXX/XXXXXXXX/XXXXXXXXXXXXXX
+DEFAULT_SLACK_CHANNEL='#general'
+DEFAULT_SLACK_USERNAME=Robot
+DEFAULT_SLACK_ICON=':ghost:'
+DEFAULT_SLACK_LINKNAMES_CONVERTED=FALSE
+DEFAULT_SLACK_UNFURL_LINKS_STATUS=FALSE
+DEFAULT_SLACK_UNFURL_MEDIA_STATUS=TRUE
+DEFAULT_SLACK_ALLOW_MARKDOWN=TRUE
+DEFAULT_SLACK_MARKDOWN_FIELDS="'text','title'"
+```
 
 ## Usage
 

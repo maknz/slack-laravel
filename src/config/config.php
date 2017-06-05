@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'endpoint' => '',
+    'endpoint' => env('DEFAULT_SLACK_WEBHOOK_ENDPOINT', ''),
 
     /*
     |-------------------------------------------------------------
@@ -26,7 +26,7 @@ return [
     |
     */
 
-    'channel' => '#general',
+    'channel' => env('DEFAULT_SLACK_CHANNEL', '#general'),
 
     /*
     |-------------------------------------------------------------
@@ -38,7 +38,7 @@ return [
     |
     */
 
-    'username' => 'Robot',
+    'username' => env('DEFAULT_SLACK_USERNAME', 'Robot'),
 
     /*
     |-------------------------------------------------------------
@@ -51,7 +51,7 @@ return [
     |
     */
 
-    'icon' => null,
+    'icon' => env('DEFAULT_SLACK_ICON', NULL),
 
     /*
     |-------------------------------------------------------------
@@ -63,7 +63,7 @@ return [
     |
     */
 
-    'link_names' => false,
+    'link_names' => env('DEFAULT_SLACK_LINKNAMES_CONVERTED', FALSE),
 
     /*
     |-------------------------------------------------------------
@@ -74,7 +74,7 @@ return [
     |
     */
 
-    'unfurl_links' => false,
+    'unfurl_links' => env('DEFAULT_SLACK_UNFURL_LINKS_STATUS', FALSE),
 
     /*
     |-------------------------------------------------------------
@@ -86,7 +86,7 @@ return [
     |
     */
 
-    'unfurl_media' => true,
+    'unfurl_media' => env('DEFAULT_SLACK_UNFURL_MEDIA_STATUS', TRUE),
 
     /*
     |-------------------------------------------------------------
@@ -98,7 +98,7 @@ return [
     |
     */
 
-    'allow_markdown' => true,
+    'allow_markdown' => env('DEFAULT_SLACK_ALLOW_MARKDOWN', TRUE),
 
     /*
     |-------------------------------------------------------------
@@ -111,7 +111,7 @@ return [
     |
     */
 
-    'markdown_in_attachments' => [],
+    'markdown_in_attachments' => [env('DEFAULT_SLACK_MARKDOWN_FIELDS')],
 
     // Allow Markdown in just the text and title fields
     // 'markdown_in_attachments' => ['text', 'title']
