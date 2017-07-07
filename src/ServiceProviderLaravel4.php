@@ -24,7 +24,7 @@ class ServiceProviderLaravel4 extends \Illuminate\Support\ServiceProvider
      */
     public function register()
     {
-        $this->app['razorpay.slack'] = $this->app->share(function ($app) {
+        $this->app['slack'] = $this->app->share(function ($app) {
             $allow_markdown = $app['config']->get('slack::allow_markdown');
 
             $markdown_in_attachments = $app['config']->get('slack::markdown_in_attachments');
@@ -47,6 +47,6 @@ class ServiceProviderLaravel4 extends \Illuminate\Support\ServiceProvider
             );
         });
 
-        $this->app->bind('Razorpay\Slack\Client', 'razorpay.slack');
+        $this->app->bind('Razorpay\Slack\Client', 'slack');
     }
 }
