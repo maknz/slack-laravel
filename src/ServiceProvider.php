@@ -83,6 +83,6 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
      */
     public function provides()
     {
-        return ['razorpay.slack'];
+        return ['slack'];
     }
 }
