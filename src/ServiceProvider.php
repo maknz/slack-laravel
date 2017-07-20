@@ -1,6 +1,6 @@
 <?php
 
-namespace Maknz\Slack\Laravel;
+namespace jeremykenedy\Slack\Laravel;
 
 use RuntimeException;
 
@@ -83,6 +83,6 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
      */
     public function provides()
     {
-        return ['maknz.slack'];
+        return ['jeremykenedy.slack'];
     }
 }

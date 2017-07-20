@@ -1,4 +1,31 @@
+### OSX BOOGERS ###
+.DS_Store
+*._DS_Store
+._.DS_Store
+*._
+._*
+._.*
+
+### WINDOWS BOOGERS ###
+Thumbs.db
+
+### Sass ###
+#bower_components/*
+/.sass-cache/*
+.sass-cache
+
+### SUBLIMETEXT BOOGERS ###
+*.sublime-workspace
+.phpintel/*
+/.phpintel/*
+*.php-temp
+
+### PHPSTORM BOOGERS ###
+.idea/*
+/.idea/*
+
 /vendor
 composer.phar
 composer.lock
 .DS_Store
+/.phpintel

@@ -1,68 +1,76 @@
 # Slack for Laravel
 
-This package allows you to use [Slack for PHP](https://github.com/maknz/slack) easily and elegantly in your Laravel 4 or 5 app. Read the instructions below to get setup, and then head on over to [Slack for PHP](https://github.com/maknz/slack) for usage details. **Note: this package is no longer being actively maintained.**
+[![Total Downloads](https://poser.pugx.org/jeremykenedy/uuid/d/total.svg)](https://packagist.org/packages/jeremykenedy/uuid)
+[![Latest Stable Version](https://poser.pugx.org/jeremykenedy/uuid/v/stable.svg)](https://packagist.org/packages/jeremykenedy/uuid)
+[![License](https://poser.pugx.org/jeremykenedy/uuid/license.svg)](https://raw.githubusercontent.com/jeremykenedy/laravel-auth/LICENSE)
 
-## Requirements
+This package allows you to use [Slack for PHP](https://github.com/maknz/slack) easily and elegantly in your Laravel 5 app.
 
-Laravel 4 or 5.
 
-## Installation
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Usage](#usage)
+    - [1. Include Class](#1.-include-class)
+    - [2. Trigging Slack Messages](#2.-trigging-slack-messages)
+        - [Send to Default Channel](#send-to-default-channel)
+        - [Send to Different Channel](#send-to-different-channel)
+        - [Send to Private Message](#send-to-private-message)
+- [License](#license)
+- [Credits](#credits)
 
-You can install the package using the [Composer](https://getcomposer.org/) package manager. You can install it by running this command in your project root:
+### Requirements
 
-```sh
-composer require maknz/slack-laravel
+* [Laravel 5.3 or newer](https://laravel.com/docs/installation)
+
+### Installation
+
+1. From your projects root folder in terminal run:
+
+```bash
+    composer require jeremykenedy/slack-laravel
 ```
 
-Then [create an incoming webhook](https://my.slack.com/services/new/incoming-webhook) for each Slack team you'd like to send messages to. You'll need the webhook URL(s) in order to configure this package.
-
-## Laravel 5
-
-Add the `Maknz\Slack\Laravel\ServiceProvider` provider to the `providers` array in `config/app.php`:
+2. Register the package with laravel in `config/app.php` under `providers` with the following:
 
 ```php
-'providers' => [
-  Maknz\Slack\Laravel\ServiceProvider::class,
-],
+    'providers' => [
+        jeremykenedy\Slack\Laravel\ServiceProvider::class,
+    ];
 ```
 
-Then add the facade to your `aliases` array:
+3. Register the package with laravel in `config/app.php` under `aliases` with the following:
 
 ```php
-'aliases' => [
-  ...
-  'Slack' => Maknz\Slack\Laravel\Facade::class,
-],
+    'aliases' => [
+        'Slack' => jeremykenedy\Slack\Laravel\Facade::class,
+    ];
 ```
 
-Finally, publish the config file with `php artisan vendor:publish --tag=slacklaravel`. You'll find it at `config/slack.php`.
+4. Publish the config file from your projects root folder in terminal by running:
 
-## Laravel 4
+```bash
+    php artisan vendor:publish --tag=slacklaravel
+```
+5. [Create an incoming webhook](https://my.slack.com/services/new/incoming-webhook) for each Slack team you'd like to send messages to. You'll need the webhook URL(s) in order to configure this package.
 
-Add the `Maknz\Slack\Laravel\ServiceProvider` provider to the `providers` array in `app/config.php`:
+6. Configure Slack for Laravel in your `.env` file by adding and editing the following:
 
 ```php
-'providers' => [
-  ...
-  'Maknz\Slack\Laravel\ServiceProvider',
-],
+DEFAULT_SLACK_WEBHOOK_ENDPOINT=https://hooks.slack.com/services/XXXXXXXX/XXXXXXXX/XXXXXXXXXXXXXX
+DEFAULT_SLACK_CHANNEL='#general'
+DEFAULT_SLACK_USERNAME=Robot
+DEFAULT_SLACK_ICON=':ghost:'
+DEFAULT_SLACK_LINKNAMES_CONVERTED=FALSE
+DEFAULT_SLACK_UNFURL_LINKS_STATUS=FALSE
+DEFAULT_SLACK_UNFURL_MEDIA_STATUS=TRUE
+DEFAULT_SLACK_ALLOW_MARKDOWN=TRUE
+DEFAULT_SLACK_MARKDOWN_FIELDS="'text','title'"
 ```
 
-Then add the facade to your `aliases` array:
-
-```php
-'aliases' => [
-  ...
-  'Slack' => 'Maknz\Slack\Laravel\Facade',
-],
-```
-
-Finally, publish the config file with `php artisan config:publish maknz/slack`. You'll find the config file at `app/config/packages/maknz/slack-laravel/config.php`.
-
-## Configuration
+### Configuration
 
 The config file comes with defaults and placeholders. Configure at least one team and any defaults you'd like to change.
-
 Default configurations are published into `config/slack.php` and the values can be set in the `.env` file like so:
 
 ```
@@ -77,22 +85,42 @@ DEFAULT_SLACK_ALLOW_MARKDOWN=TRUE
 DEFAULT_SLACK_MARKDOWN_FIELDS="'text','title'"
 ```
 
-## Usage
+### Usage
 
-The Slack facade is now your interface to the library. Any method you see being called an instance of `Maknz\Slack\Client` is available on the `Slack` facade for easy use.
-
-Note that if you're using the facade in a namespace (e.g. `App\Http\Controllers` in Laravel 5) you'll need to either `use Slack` at the top of your class to import it, or append a backslash to access the root namespace directly when calling methods, e.g. `\Slack::method()`.
+### 1. Include Class
+* In the controller file that you will use this be sure to include the `Slack class in the head of the file:
 
 ```php
-// Send a message to the default channel
-Slack::send('Hello world!');
-
-// Send a message to a different channel
-Slack::to('#accounting')->send('Are we rich yet?');
-
-// Send a private message
-Slack::to('@username')->send('psst!');
+use Slack;
 ```
 
-Now head on over to [Slack for PHP](https://github.com/maknz/slack) for more examples, including attachments and message buttons.
+### 2. Trigging Slack Messages
 
+###### Send to Default Channel
+* Send a message to the default channel
+
+```php
+    Slack::send('Hi Slack, from the API :)');
+```
+
+###### Send to Different Channel
+* Send a message to a different channel
+
+```php
+    Slack::to('#testing')->send('Hi Testing!');
+```
+
+###### Send to Private Message
+* Send a message to a different channel
+
+```php
+    Slack::to('@jeremykenedy')->send('Hi Jeremy!');
+```
+
+### Credits
+* Full development credit must go to [maknz](https://github.com/maknz/slack-laravel).
+* This package was forked and improved. The original package states that it was no longer maintained.
+* This package was forked and modified to be compliant with [MIT](https://opensource.org/licenses/MIT) licencing standards for production use.
+
+## License
+Slack for Laravel is licensed under the MIT license for both personal and commercial products. Enjoy!

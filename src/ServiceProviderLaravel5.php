@@ -1,8 +1,8 @@
 <?php
 
-namespace Maknz\Slack\Laravel;
+namespace jeremykenedy\Slack\Laravel;
 
-use Maknz\Slack\Client as Client;
+use jeremykenedy\Slack\Client as Client;
 use GuzzleHttp\Client as Guzzle;
 
 class ServiceProviderLaravel5 extends \Illuminate\Support\ServiceProvider
@@ -28,7 +28,8 @@ class ServiceProviderLaravel5 extends \Illuminate\Support\ServiceProvider
     {
         $this->mergeConfigFrom(__DIR__.'/config/config.php', 'slack');
 
-        $this->app['maknz.slack'] = $this->app->share(function ($app) {
+        $this->app->singleton('jeremykenedy.slack', function($app)
+        {
             return new Client(
                 $app['config']->get('slack.endpoint'),
                 [
@@ -45,6 +46,6 @@ class ServiceProviderLaravel5 extends \Illuminate\Support\ServiceProvider
             );
         });
 
-        $this->app->bind('Maknz\Slack\Client', 'maknz.slack');
+        $this->app->bind('jeremykenedy\Slack\Client', 'jeremykenedy.slack');
     }
 }
