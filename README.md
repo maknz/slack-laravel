@@ -1,11 +1,10 @@
 # Slack for Laravel
 
-[![Total Downloads](https://poser.pugx.org/jeremykenedy/uuid/d/total.svg)](https://packagist.org/packages/jeremykenedy/uuid)
-[![Latest Stable Version](https://poser.pugx.org/jeremykenedy/uuid/v/stable.svg)](https://packagist.org/packages/jeremykenedy/uuid)
-[![License](https://poser.pugx.org/jeremykenedy/uuid/license.svg)](https://raw.githubusercontent.com/jeremykenedy/laravel-auth/LICENSE)
+[![Total Downloads](https://poser.pugx.org/jeremykenedy/slack-laravel/d/total.svg)](https://packagist.org/packages/jeremykenedy/slack-laravel)
+[![Latest Stable Version](https://poser.pugx.org/jeremykenedy/slack-laravel/v/stable.svg)](https://packagist.org/packages/jeremykenedy/slack-laravel)
+[![License](https://poser.pugx.org/jeremykenedy/slack-laravel/license.svg)](https://raw.githubusercontent.com/jeremykenedy/laravel-auth/LICENSE)
 
 This package allows you to use [Slack for PHP](https://github.com/maknz/slack) easily and elegantly in your Laravel 5 app.
-
 
 - [Requirements](#requirements)
 - [Installation](#installation)
