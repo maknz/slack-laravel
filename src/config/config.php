@@ -12,7 +12,6 @@ return [
     | https://hooks.slack.com/services/XXXXXXXX/XXXXXXXX/XXXXXXXXXXXXXX
     |
     */
-
     'endpoint' => env('DEFAULT_SLACK_WEBHOOK_ENDPOINT', ''),
 
     /*
@@ -25,7 +24,6 @@ return [
     | null to use the default set on the Slack webhook
     |
     */
-
     'channel' => env('DEFAULT_SLACK_CHANNEL', '#general'),
 
     /*
@@ -37,7 +35,6 @@ return [
     | the default set on the Slack webhook
     |
     */
-
     'username' => env('DEFAULT_SLACK_USERNAME', 'Robot'),
 
     /*
@@ -50,7 +47,6 @@ return [
     | set on the Slack webhook
     |
     */
-
     'icon' => env('DEFAULT_SLACK_ICON', NULL),
 
     /*
@@ -62,7 +58,6 @@ return [
     | by Slack
     |
     */
-
     'link_names' => env('DEFAULT_SLACK_LINKNAMES_CONVERTED', FALSE),
 
     /*
@@ -73,7 +68,6 @@ return [
     | Whether Slack should unfurl links to text-based content
     |
     */
-
     'unfurl_links' => env('DEFAULT_SLACK_UNFURL_LINKS_STATUS', FALSE),
 
     /*
@@ -85,7 +79,6 @@ return [
     | as images and YouTube videos
     |
     */
-
     'unfurl_media' => env('DEFAULT_SLACK_UNFURL_MEDIA_STATUS', TRUE),
 
     /*
@@ -97,7 +90,6 @@ return [
     | language. For formatting options, see Slack's help article: http://goo.gl/r4fsdO
     |
     */
-
     'allow_markdown' => env('DEFAULT_SLACK_ALLOW_MARKDOWN', TRUE),
 
     /*
@@ -110,7 +102,6 @@ return [
     | should be formatted as Markdown.
     |
     */
-
     'markdown_in_attachments' => [env('DEFAULT_SLACK_MARKDOWN_FIELDS')],
 
     // Allow Markdown in just the text and title fields
@@ -118,5 +109,4 @@ return [
 
     // Allow Markdown in all fields
     // 'markdown_in_attachments' => ['pretext', 'text', 'title', 'fields', 'fallback']
-
 ];
