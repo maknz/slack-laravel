@@ -1,5 +1,5 @@
 {
-    "name": "maknz/slack-laravel",
+    "name": "mjniuz/slack-laravel",
     "description": "Laravel 4 and 5 integration for the maknz/slack package, including facades and service providers.",
     "keywords": ["slack", "laravel"],
     "license": "BSD-2-Clause",
@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "php": ">=5.4.0",
+        "php": ">=7.0.0",
         "maknz/slack": "~1.0"
     },
     "autoload": {
