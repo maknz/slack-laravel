@@ -18,5 +18,11 @@
             "Maknz\\Slack\\Laravel\\": "src/"
         }
     },
-    "minimum-stability": "stable"
-}
+    "minimum-stability": "stable",
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Maknz\Slack\Laravel\ServiceProvider"
+            ]}
+        }
+    }
