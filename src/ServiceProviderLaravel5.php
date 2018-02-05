@@ -1,48 +1,93 @@
 <?php
 
-namespace Maknz\Slack\Laravel;
+namespace Razorpay\Slack\Laravel;
 
-use Maknz\Slack\Client as Client;
+use Razorpay\Slack\Client as Client;
 use GuzzleHttp\Client as Guzzle;
+use Queue;
 
 class ServiceProviderLaravel5 extends \Illuminate\Support\ServiceProvider
 {
-    /**
-     * Bootstrap the application events.
-     *
-     * @return void
-     */
+  /**
+   * Bootstrap the application events.
+   *
+   * @return void
+   */
     public function boot()
     {
-        $this->publishes([__DIR__.'/config/config.php' => config_path('slack.php')]);
+        $this->publishes([__DIR__ . '/config/config.php' => config_path('slack.php')]);
+    }
+
+    protected function getEncrypter()
+    {
+        return $this->app['encrypter'];
+    }
+
+    protected function getQueue($queue)
+    {
+        return $this->app['queue']->connection($queue);
     }
 
     /**
-     * Register the service provider.
-     *
-     * @return void
-     */
+    * Register the service provider.
+    *
+    * @return void
+    */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/config/config.php', 'slack');
+        $this->mergeConfigFrom(__DIR__ . '/config/config.php', 'slack');
 
-        $this->app['maknz.slack'] = $this->app->share(function ($app) {
-            return new Client(
-                $app['config']->get('slack.endpoint'),
+        $this->app->singleton('slack', function ($app) {
+            $slack = new Client(
+                $app['config']->get('slack.defaults.endpoint'),
                 [
-                    'channel' => $app['config']->get('slack.channel'),
-                    'username' => $app['config']->get('slack.username'),
-                    'icon' => $app['config']->get('slack.icon'),
-                    'link_names' => $app['config']->get('slack.link_names'),
-                    'unfurl_links' => $app['config']->get('slack.unfurl_links'),
-                    'unfurl_media' => $app['config']->get('slack.unfurl_media'),
-                    'allow_markdown' => $app['config']->get('slack.allow_markdown'),
-                    'markdown_in_attachments' => $app['config']->get('slack.markdown_in_attachments'),
+                    'channel'                 => $app['config']->get('slack.defaults.channel'),
+                    'username'                => $app['config']->get('slack.defaults.username'),
+                    'icon'                    => $app['config']->get('slack.defaults.icon'),
+                    'link_names'              => $app['config']->get('slack.defaults.link_names'),
+                    'unfurl_links'            => $app['config']->get('slack.defaults.unfurl_links'),
+                    'unfurl_media'            => $app['config']->get('slack.defaults.unfurl_media'),
+                    'allow_markdown'          => $app['config']->get('slack.defaults.allow_markdown'),
+                    'markdown_in_attachments' => $app['config']->get('slack.defaults.markdown_in_attachments'),
+                    'is_slack_enabled'        => $app['config']->get('slack.defaults.is_slack_enabled'),
                 ],
+                $this->getQueue($app['config']->get('slack.defaults.queue')),
                 new Guzzle
             );
+
+            return $slack;
         });
 
-        $this->app->bind('Maknz\Slack\Client', 'maknz.slack');
+        $clientConfigs = $this->app['config']['clients'];
+
+        foreach ($clientConfigs as $name  => $config)
+        {
+            $this->app->singleton('slack-'.$name, function ($app) use ($name, $config) {
+                $defaults = $app['config']->get("slack.defaults");
+
+                $config = array_merge($defaults, $config);
+
+                $slack = new Client(
+                    $config['endpoint'],
+                    [
+                        'channel'                 => $config['channel'],
+                        'username'                => $config['username'],
+                        'icon'                    => $config['icon'],
+                        'link_names'              => $config['link_names'],
+                        'unfurl_links'            => $config['unfurl_links'],
+                        'unfurl_media'            => $config['unfurl_media'],
+                        'allow_markdown'          => $config['allow_markdown'],
+                        'markdown_in_attachments' => $config['markdown_in_attachments'],
+                        'is_slack_enabled'        => $app['config']->get('slack.is_slack_enabled'),
+                    ],
+                    $this->getQueue($app['config']->get('slack.defaults.queue')),
+                    new Guzzle
+                );
+
+                return $slack;
+            });
+        }
+
+        $this->app->bind('Razorpay\Slack\Client', 'slack');
     }
 }
