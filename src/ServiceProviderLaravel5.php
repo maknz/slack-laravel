@@ -39,24 +39,56 @@ class ServiceProviderLaravel5 extends \Illuminate\Support\ServiceProvider
 
         $this->app->singleton('slack', function ($app) {
             $slack = new Client(
-                $app['config']->get('slack.endpoint'),
+                $app['config']->get('slack.defaults.endpoint'),
                 [
-                    'channel'                 => $app['config']->get('slack.channel'),
-                    'username'                => $app['config']->get('slack.username'),
-                    'icon'                    => $app['config']->get('slack.icon'),
-                    'link_names'              => $app['config']->get('slack.link_names'),
-                    'unfurl_links'            => $app['config']->get('slack.unfurl_links'),
-                    'unfurl_media'            => $app['config']->get('slack.unfurl_media'),
-                    'allow_markdown'          => $app['config']->get('slack.allow_markdown'),
-                    'markdown_in_attachments' => $app['config']->get('slack.markdown_in_attachments'),
+                    'channel'                 => $app['config']->get('slack.defaults.channel'),
+                    'username'                => $app['config']->get('slack.defaults.username'),
+                    'icon'                    => $app['config']->get('slack.defaults.icon'),
+                    'link_names'              => $app['config']->get('slack.defaults.link_names'),
+                    'unfurl_links'            => $app['config']->get('slack.defaults.unfurl_links'),
+                    'unfurl_media'            => $app['config']->get('slack.defaults.unfurl_media'),
+                    'allow_markdown'          => $app['config']->get('slack.defaults.allow_markdown'),
+                    'markdown_in_attachments' => $app['config']->get('slack.defaults.markdown_in_attachments'),
                     'is_slack_enabled'        => $app['config']->get('slack.is_slack_enabled'),
                 ],
-                $this->getQueue($app['config']->get('slack.queue')),
+                $this->getQueue($app['config']->get('slack.defaults.queue')),
                 new Guzzle
             );
 
             return $slack;
         });
+
+        $clientConfigs = $this->app['config']['slack']['clients'];
+
+        foreach ($clientConfigs as $name  => $config)
+        {
+            $this->app->singleton('slack-'.$name, function ($app) use ($name, $config) {
+                $defaults = $app['config']->get("slack.defaults");
+
+                $config = array_merge($defaults, $config);
+
+                $slack = new Client(
+                    $config['endpoint'],
+                    [
+                        'channel'                 => $config['channel'],
+                        'username'                => $config['username'],
+                        'icon'                    => $config['icon'],
+                        'link_names'              => $config['link_names'],
+                        'unfurl_links'            => $config['unfurl_links'],
+                        'unfurl_media'            => $config['unfurl_media'],
+                        'allow_markdown'          => $config['allow_markdown'],
+                        'markdown_in_attachments' => $config['markdown_in_attachments'],
+                        'is_slack_enabled'        => $app['config']->get('slack.is_slack_enabled'),
+                    ],
+                    $this->getQueue($app['config']->get('slack.defaults.queue')),
+                    new Guzzle
+                );
+
+                return $slack;
+            });
+
+            $this->app->bind('Razorpay\Slack\Client', 'slack-' . $name);
+        }
 
         $this->app->bind('Razorpay\Slack\Client', 'slack');
     }

@@ -82,3 +82,22 @@ Slack::to('@username')->send('psst!');
 
 Now head on over to [Slack for PHP](https://github.com/razorpay/slack) for more examples, including attachments and message buttons.
 
+# Migrating to 2.0
+Version 2.0 adds support for multiple slack clients. For migrating 1.X to 2.0, nest all the configuration properties inside `defaults` key in the configuration file. Configuration for additional clients can be specified in the `clients` property.
+
+```
+[
+    'is_slack_enabled'  =>  true,
+    'defaults'    =>  [
+        // default slack client configuration.
+    ],
+    
+    clients =>  [
+        // Additional slack clients configuration
+        'client1'   =>  [
+            
+        ]
+    ]
+]
+```
+
