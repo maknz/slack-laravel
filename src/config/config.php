@@ -17,6 +17,30 @@ return [
 
     /*
     |-------------------------------------------------------------
+    | Webhook connection timeout
+    |-------------------------------------------------------------
+    |
+    | The maximum number of seconds to wait for a connection to
+    | the webhook endpoint to be established
+    |
+    */
+
+    'connection_timeout' => 5,
+
+    /*
+    |-------------------------------------------------------------
+    | Webhook request timeout
+    |-------------------------------------------------------------
+    |
+    | The maximum number of seconds to wait for a response from
+    | the webhook endpoint
+    |
+    */
+
+    'request_timeout' => 10,
+
+    /*
+    |-------------------------------------------------------------
     | Default channel
     |-------------------------------------------------------------
     |

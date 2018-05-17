@@ -43,7 +43,10 @@ class ServiceProviderLaravel4 extends \Illuminate\Support\ServiceProvider
                     'allow_markdown' => is_bool($allow_markdown) ? $allow_markdown : true,
                     'markdown_in_attachments' => is_array($markdown_in_attachments) ? $markdown_in_attachments : [],
                 ],
-                new Guzzle
+                new Guzzle([
+                    'connect_timeout' => $app['config']->get('slack.connection_timeout'),
+                    'timeout' => $app['config']->get('slack.request_timeout'),
+                ])
             );
         });
 
