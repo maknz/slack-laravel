@@ -70,6 +70,9 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
 
             case 5:
               return new ServiceProviderLaravel5($app);
+              
+            case 8:
+              return new ServiceProviderLaravel8($app);
 
             default:
               throw new RuntimeException('Your version of Laravel is not supported');
