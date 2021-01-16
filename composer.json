@@ -11,12 +11,18 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "maknz/slack": "~1.0"
+        "maknz/slack": "dev-patch-1"
     },
     "autoload": {
         "psr-4": {
             "Maknz\\Slack\\Laravel\\": "src/"
         }
     },
-    "minimum-stability": "stable"
+    "minimum-stability": "stable",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/daryledesilva/slack/"
+        }
+    ]
 }
