@@ -62,15 +62,9 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
     {
         $app = $this->app;
 
-        $version = intval($app::VERSION);
+        $version = intval($app->version());
 
         switch ($version) {
-            case 4:
-              return new ServiceProviderLaravel4($app);
-
-            case 5:
-              return new ServiceProviderLaravel5($app);
-              
             case 8:
               return new ServiceProviderLaravel8($app);
 
