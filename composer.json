@@ -14,8 +14,8 @@
         }
     ],
     "require": {
-        "php": ">=5.4.0",
-        "razorpay/slack": "1.10.1"
+        "php": ">=8.1",
+        "razorpay/slack": "dev-php-upgrade"
     },
     "repositories": [
     ],
@@ -24,5 +24,5 @@
             "Razorpay\\Slack\\Laravel\\": "src/"
         }
     },
-    "minimum-stability": "stable"
+    "minimum-stability": "dev"
 }
