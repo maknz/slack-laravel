@@ -14,8 +14,8 @@
         }
     ],
     "require": {
-        "php": ">=5.4.0",
-        "razorpay/slack": "2.0.0"
+        "php": ">=8.1",
+        "razorpay/slack": "^2.0.0"
     },
     "repositories": [
     ],
