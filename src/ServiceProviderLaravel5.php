@@ -37,6 +37,10 @@ class ServiceProviderLaravel5 extends \Illuminate\Support\ServiceProvider
     {
         $this->mergeConfigFrom(__DIR__ . '/config/config.php', 'slack');
 
+        //Todo:- The config copy is not correct, the values are not getting copied in slack.defaults array
+        // The fix is to replace slack.defaults.<key> with slack.<key>. This is broken since April 2021.
+        // And as there is no report for this we are assuming the flow is not in use.
+        // If someone needs this flow please make the above change.
         $this->app->singleton('slack', function ($app) {
             $slack = new Client(
                 $app['config']->get('slack.defaults.endpoint'),
